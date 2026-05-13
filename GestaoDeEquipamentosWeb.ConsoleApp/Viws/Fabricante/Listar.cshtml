@@ -1,0 +1,37 @@
+﻿@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
+@model List<Fabricante>;
+
+<h1>Gestão de equipamentos</h1>
+
+<hr>
+<a href="/Fabricante">Gestão de Fabricantes</a>
+<a href="/Fabricante">Gestão de Fabricantes</a>
+<a href="/Fabricante">Gestão de Fabricantes</a>
+<hr>
+
+<hr>
+<a href="/Fabricante/Cadastrar"></a>
+<hr>
+
+
+<table>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Email</td>
+            <td>Telefones</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Fabricante f in Model)
+        {
+            <tr>
+                <td>@f.Id</td>
+                <td>@f.Nome</td>
+                <td>@f.Email</td>
+                <td>@f.Telefone</td>
+            </tr>
+        }
+    </tbody>
+</table>
