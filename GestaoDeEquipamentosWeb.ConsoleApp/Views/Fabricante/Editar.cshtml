@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <hr>
+    <a href="/Fabricante/Listar">Gestão de Fabricantes</a>
+    <a href="/Fabricante">Gestão de Fabricantes</a>
+    <a href="/Fabricante">Gestão de Fabricantes</a>
+    <hr>
+
+    <hr>
+    <h2>Edição de Fabricante</h2>
+    <hr>
+
+
+
+    <form action="/Fabricante/Editar/@Model.Id" method="post">
+        <div>
+            <label for="Nome"></label>
+            <br>
+            <input type="text" name="Nome" value="@Model.Nome">
+        </div>
+
+        <div>
+            <label for="Email"></label>
+            <br>
+            <input type="email" name="Email" value="@Model.Email">
+        </div>
+
+        <div>
+            <label for="Telefone"></label>
+            <br>
+            <input type="text" name="Telefone" value="@Model.Telefone">
+        </div>
+
+        <button type="submit">Confirmar</button>
+
+    </form>
+</body>
+
+</html>

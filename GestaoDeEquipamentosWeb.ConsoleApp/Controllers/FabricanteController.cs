@@ -19,7 +19,9 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
         // GET: FabricanteController
         public ActionResult Listar()
         {
-            return View();
+            List<Fabricante> fabricantes = repositorioFabricante.SelecionarTodos();
+
+            return View(fabricantes);
         }
 
         [HttpGet]
@@ -28,7 +30,7 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Cadastrar(string nome, string email, string telefone)
         {
             Fabricante novoFabricante = new Fabricante(nome, email, telefone);
@@ -38,5 +40,52 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
 
         }
 
+        [HttpGet]
+
+        public ActionResult Editar(string id)
+        {
+            Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
+
+            if (fabricante == null)
+                return RedirectToAction(nameof(Listar));
+            return View(fabricante);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(string id, string nome, string email, string telefone)
+        {
+            Fabricante fabricanteatualizado = new Fabricante(nome, email, telefone);
+
+            repositorioFabricante.Editar(id, fabricanteatualizado);
+
+            return RedirectToAction(nameof(Listar));
+        }
+
+        [HttpGet]
+
+        public ActionResult Excluir(string id)
+        {
+            Fabricante? fabricante = repositorioFabricante.SelecionarPorId(id);
+
+            if (fabricante == null)
+                return RedirectToAction(nameof(Listar));
+
+            return View(fabricante);
+        }
+
+        [HttpGet]
+        [ActionName("Excluir")]
+
+        public ActionResult ExcluirConfirmado(string id)
+        {
+            Fabricante? fabricante = (Fabricante?)repositorioFabricante.SelecionarPorId(id);
+
+            if (fabricante == null)
+                return RedirectToAction(nameof(Listar));
+
+            repositorioFabricante.Excluir(fabricante);
+
+            return View(fabricante);
+        }
     }
 }
