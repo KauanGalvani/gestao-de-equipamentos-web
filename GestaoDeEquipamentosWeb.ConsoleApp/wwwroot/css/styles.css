@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+:root {
+    font-size: 18px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: "Google Sans", sans-serif;
+
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #22c55e81;
+    padding-right: 100px;
+}
+
+nav a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    border-radius: 30px;
+    padding: 10px 10px;
+}
+
+nav a:hover {
+    background-color: #15803c81;
+}
+
+.links-navbar {
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
+}
+
+.btn-cadastrar {
+    display: inline-block;
+
+    border: 1px solid #22c55e81;
+    border-radius: 10px;
+    color: #02461a;
+    text-decoration: none;
+    font-weight: 600;
+
+    padding: 10px 15px;
+}
+
+.btn-cadastrar:hover {
+    background-color: #15803c81;
+}
+
+.registros {
+    width: 100%;
+    min-width: 720px;
+}
+
+.registros th,
+.registros td {
+    padding: 16px 18px;
+    color: #02461a;
+    text-align: left;
+    align-items: center;
+}
+
+.registros th {
+    background-color: #22C55E;
+    color: #02461a
+}
+
+.registros tbody tr {
+    border-top: 1px solid #22c55e81;
+    ;
+    background-color: #22c55e81;
+}
+
+.registros a {
+    border: 1px solid #02461a;
+    border-radius: 100vmax;
+    color: #02461a;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 7px 16px;
+    text-decoration: none;
+}
+
+.registros a:hover {
+    background-color: #15803c81;
+}
+
+button {
+    background-color: #22c55e81;
+}
+
+button:hover {
+    background-color: #15803c81;
+}

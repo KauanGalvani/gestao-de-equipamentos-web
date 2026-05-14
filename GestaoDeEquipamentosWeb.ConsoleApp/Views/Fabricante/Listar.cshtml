@@ -1,26 +1,22 @@
-﻿@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
+﻿@{
+    Layout = "_Layout";
+    ViewBag.title = "Listagem de fabricantes";
+}
+
+@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante;
 @model List<Fabricante>;
 
-<h1>Gestão de equipamentos</h1>
+<a class="btn-cadastrar" href="/Fabricante/Cadastrar">Cadastrar</a>
 
-<hr>
-<a href="/Fabricante">Gestão de Fabricantes</a>
-<a href="/Fabricante">Gestão de Fabricantes</a>
-<a href="/Fabricante">Gestão de Fabricantes</a>
-<hr>
-
-<hr>
-<a href="/Fabricante/Cadastrar"></a>
-<hr>
-
-
-<table>
+<table class="registros">
     <thead>
         <tr>
-            <td>ID</td>
-            <td>Nome</td>
-            <td>Email</td>
-            <td>Telefones</td>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefones</th>
+            <th>Editar</th>
+            <th>Excluir</th>
         </tr>
     </thead>
     <tbody>
@@ -31,8 +27,8 @@
                 <td>@f.Nome</td>
                 <td>@f.Email</td>
                 <td>@f.Telefone</td>
-                <td><a href="/Fabricante/Editar/@f.Id"></a></td>
-                <td><a href="/Fabricante/Excluir/@f.Id"></a></td>
+                <td><a href="/Fabricante/Editar/@f.Id">Editar</a></td>
+                <td><a href="/Fabricante/Excluir/@f.Id">Excluir</a></td>
             </tr>
         }
     </tbody>

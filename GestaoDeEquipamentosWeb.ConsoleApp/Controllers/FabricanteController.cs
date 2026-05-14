@@ -17,6 +17,7 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
         }
 
         // GET: FabricanteController
+        [HttpGet]
         public ActionResult Listar()
         {
             List<Fabricante> fabricantes = repositorioFabricante.SelecionarTodos();
@@ -73,7 +74,7 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             return View(fabricante);
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("Excluir")]
 
         public ActionResult ExcluirConfirmado(string id)

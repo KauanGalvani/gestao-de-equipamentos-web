@@ -1,47 +1,27 @@
-﻿<!DOCTYPE html>
-<html lang="pt-br">
+﻿@{
+    Layout = "_Layout";
+    ViewBag.title = "Edição de Fabricantes";
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<form action="/Fabricante/Editar/@Model.Id" method="post">
+    <div>
+        <label for="Nome"></label>
+        <br>
+        <input type="text" name="Nome" value="@Model.Nome">
+    </div>
 
-<body>
-    <hr>
-    <a href="/Fabricante/Listar">Gestão de Fabricantes</a>
-    <a href="/Fabricante">Gestão de Fabricantes</a>
-    <a href="/Fabricante">Gestão de Fabricantes</a>
-    <hr>
+    <div>
+        <label for="Email"></label>
+        <br>
+        <input type="email" name="Email" value="@Model.Email">
+    </div>
 
-    <hr>
-    <h2>Edição de Fabricante</h2>
-    <hr>
+    <div>
+        <label for="Telefone"></label>
+        <br>
+        <input type="text" name="Telefone" value="@Model.Telefone">
+    </div>
 
+    <button type="submit">Confirmar</button>
 
-
-    <form action="/Fabricante/Editar/@Model.Id" method="post">
-        <div>
-            <label for="Nome"></label>
-            <br>
-            <input type="text" name="Nome" value="@Model.Nome">
-        </div>
-
-        <div>
-            <label for="Email"></label>
-            <br>
-            <input type="email" name="Email" value="@Model.Email">
-        </div>
-
-        <div>
-            <label for="Telefone"></label>
-            <br>
-            <input type="text" name="Telefone" value="@Model.Telefone">
-        </div>
-
-        <button type="submit">Confirmar</button>
-
-    </form>
-</body>
-
-</html>
+</form>
