@@ -10,28 +10,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="~/css/styles.css">
-        <title>@ViewBag.title - Gestão de equipamentos</title>
-    </head>
+    <title>@ViewBag.title - Gestão de equipamentos</title>
+</head>
 
-    <body>
-        <nav>
-            <div class="links-navbar">
-                <h3>Gestão de equipamentos</h3>
+<body>
+    <nav>
+        <div>
+            <h3>Gestão de equipamentos</h3>
+        </div>
 
-                <a href="/Home/Index">Inicio</a>
-                <a href="/Fabricante/Listar">Lista de Fabricantes</a>
-                <a href="/Fabricante">Cadastrar Fabricantes</a>
-                <a href="/Fabricante">Gestão de Fabricantes</a>
-            </div>
-        </nav>
+        <div class="links-navbar">
+            <a href="/Home/Index">Inicio</a>
+            <a href="/Fabricante/Listar">Lista de Fabricantes</a>
+            <a href="/Fabricante">Cadastrar Fabricantes</a>
+            <a href="/Fabricante">Gestão de Fabricantes</a>
+        </div>
+    </nav>
 
-        <header>
-            <h2>@ViewBag.title</h2>
-        </header>
+    <header>
+        <h2>@ViewBag.title</h2>
+    </header>
 
-        <main>
-            @RenderBody()
-        </main>
-    </body>
+    <main>
+        @RenderBody()
+    </main>
+</body>
 
 </html>

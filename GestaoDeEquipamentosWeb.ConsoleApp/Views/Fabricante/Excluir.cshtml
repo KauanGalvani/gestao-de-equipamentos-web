@@ -6,25 +6,30 @@
 @using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante;
 @model Fabricante;
 
-<form action="/Fabricante/Excluir/@Model.Id" method="post">
-    <div>
+<form class="formulario" action="/Fabricante/Excluir/@Model.Id" method="post">
+
+    <p class="formulario-alerta">Deseja realmente excluir esse fabricante?</p>
+
+    <div class="formulario-campo">
         <label for="Nome">Nome</label>
         <br>
         <input type="text" name="Nome" value="@Model.Nome" disabled>
     </div>
 
-    <div>
+    <div class="formulario-campo">
         <label for="Email">Email</label>
         <br>
         <input type="email" name="Email" value="@Model.Email" disabled>
     </div>
 
-    <div>
+    <div class="formulario-campo">
         <label for="Telefone">Telefone</label>
         <br>
         <input type="text" name="Telefone" value="@Model.Telefone" disabled>
     </div>
 
-    <button type="submit">Confirmar</button>
+    <div class="formulario-acoes">
+        <button type="submit">Confirmar</button>
+    </div>
 
 </form>

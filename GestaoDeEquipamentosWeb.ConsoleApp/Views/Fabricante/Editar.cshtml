@@ -3,25 +3,27 @@
     ViewBag.title = "Edição de Fabricantes";
 }
 
-<form action="/Fabricante/Editar/@Model.Id" method="post">
-    <div>
+<form class="formulario" action="/Fabricante/Editar/@Model.Id" method="post">
+    <div class="formulario-campo">
         <label for="Nome"></label>
         <br>
         <input type="text" name="Nome" value="@Model.Nome">
     </div>
 
-    <div>
+    <div class="formulario-campo">
         <label for="Email"></label>
         <br>
         <input type="email" name="Email" value="@Model.Email">
     </div>
 
-    <div>
+    <div class="formulario-campo">
         <label for="Telefone"></label>
         <br>
         <input type="text" name="Telefone" value="@Model.Telefone">
     </div>
 
-    <button type="submit">Confirmar</button>
+    <div class="formulario-acoes">
+        <button type="submit">Confirmar</button>
+    </div>
 
 </form>

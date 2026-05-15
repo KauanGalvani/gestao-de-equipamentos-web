@@ -3,25 +3,28 @@
     ViewBag.title = "Cadastro de Fabricantes";
 }
 
-<form action="/Fabricante/Cadastrar" method="post">
-    <div>
+<form class="formulario" action="/Fabricante/Cadastrar" method="post">
+    <div class="formulario-campo">
         <label for="Nome">Nome</label>
         <br>
         <input type="text" name="Nome">
     </div>
 
-    <div>
+    <div class="formulario-campo">
         <label for="Email">Email</label>
         <br>
         <input type="email" name="Email">
     </div>
 
-    <div>
+    <div class="formulario-campo">
         <label for="Telefone">Telefone</label>
         <br>
         <input type="text" name="Telefone">
     </div>
 
-    <button type="submit">Confirmar</button>
+    <div class="formulario-acoes">
+        <button type="submit">Confirmar</button>
+
+    </div>
 
 </form>
