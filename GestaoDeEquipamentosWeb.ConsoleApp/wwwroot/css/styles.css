@@ -134,7 +134,8 @@ nav a:hover {
     text-transform: uppercase;
 }
 
-.formulario-campo input {
+.formulario-campo input,
+.formulario-campo select {
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #02461a;
@@ -146,7 +147,8 @@ nav a:hover {
     font-size: 1rem;
 }
 
-.formulario-campo input:focus {
+.formulario-campo input:focus,
+.formulario-campo select:focus {
     border-color: #02461a;
     outline: 3px solid #02461a81;
     ;

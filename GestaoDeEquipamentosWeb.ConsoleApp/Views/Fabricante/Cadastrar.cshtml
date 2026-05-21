@@ -1,4 +1,7 @@
-﻿@{
+﻿@using GestaoDeEquipamentosWeb.ConsoleApp.Models;
+@model CadastrarFabricanteViewModel;
+
+@{
     Layout = "_Layout";
     ViewBag.title = "Cadastro de Fabricantes";
 }
@@ -6,25 +9,22 @@
 <form class="formulario" action="/Fabricante/Cadastrar" method="post">
     <div class="formulario-campo">
         <label for="Nome">Nome</label>
-        <br>
         <input type="text" name="Nome">
     </div>
 
     <div class="formulario-campo">
         <label for="Email">Email</label>
-        <br>
         <input type="email" name="Email">
     </div>
 
     <div class="formulario-campo">
         <label for="Telefone">Telefone</label>
-        <br>
         <input type="text" name="Telefone">
     </div>
 
     <div class="formulario-acoes">
+        <a href="/Fabricante/Listar">Voltar</a>
         <button type="submit">Confirmar</button>
-
     </div>
 
 </form>

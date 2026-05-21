@@ -74,13 +74,20 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(string id, string nome, string email, string telefone)
+        public ActionResult Editar(EditarFabricanteViewModel EditarVm)
         {
-            Fabricante fabricanteatualizado = new Fabricante(nome, email, telefone);
+            Fabricante fabricanteatualizado = new Fabricante(
+                EditarVm.Nome,
+                EditarVm.Email,
+                EditarVm.Telefone
+            );
 
-            repositorioFabricante.Editar(id, fabricanteatualizado);
+            repositorioFabricante.Editar(EditarVm.Id, fabricanteatualizado);
 
-            return RedirectToAction(nameof(Listar));
+            if (fabricanteatualizado == null)
+                return RedirectToAction(nameof(Listar));
+
+            return View(fabricanteatualizado);
         }
 
         [HttpGet]
@@ -92,15 +99,22 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             if (fabricante == null)
                 return RedirectToAction(nameof(Listar));
 
-            return View(fabricante);
+            ExcluirFabricanteViewModel ExluirVm = new ExcluirFabricanteViewModel(
+                id,
+                fabricante.Nome,
+                fabricante.Email,
+                fabricante.Telefone
+            );
+
+            return View(ExluirVm);
         }
 
         [HttpPost]
         [ActionName("Excluir")]
 
-        public ActionResult ExcluirConfirmado(string id)
+        public ActionResult ExcluirConfirmado(ExcluirFabricanteViewModel ExluirVm)
         {
-            Fabricante? fabricante = (Fabricante?)repositorioFabricante.SelecionarPorId(id);
+            Fabricante? fabricante = (Fabricante?)repositorioFabricante.SelecionarPorId(ExluirVm.Id);
 
             if (fabricante == null)
                 return RedirectToAction(nameof(Listar));

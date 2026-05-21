@@ -1,0 +1,44 @@
+@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+@using GestaoDeEquipamentosWeb.ConsoleApp.ModuloFabricante
+@{
+    Layout = "_Layout";
+    ViewBag.title = "Exclusão de Equipamento";
+
+    List<ListarFabricantesViewModel> fabricantes = ViewBag.Fabricante;
+}
+@model ExcluirEquipamentoViewModel;
+
+<form class="formulario" action="/Equipamento/Excluir/@Model.Id" method="post">
+    <p class="formulario-alerta">Deseja realmente excluir esse equipamento?</p>
+
+    <div class="formulario-campo">
+        <label>Nome</label>
+        <br>
+        <input type="text" name="Nome" value="@Model.Nome" disabled>
+    </div>
+
+    <div class="formulario-campo">
+        <label>Preço Aquisição</label>
+        <br>
+        <input type="text" name="PrecoAquisicao" min="0.01" step="0.01" value="@Model.PrecoAquisicao.ToString("C2")"
+               disabled>
+    </div>
+
+    <div class="formulario-campo">
+        <label>Data de Fabricação</label>
+        <br>
+        <input type="text" name="DataFabricacao" value="@Model.DataFabricacao.ToString("dd/MM/yyyy")" disabled>
+    </div>
+
+    <div class="formulario-campo">
+        <label>Fabricante</label>
+        <br>
+        <input type="text" name="Fabricante" value="@Model.Fabricante" disabled>
+    </div>
+
+    <div class="formulario-acoes">
+        <a href="/Equipamento/Listar">Voltar</a>
+        <button type="submit">Confirmar</button>
+    </div>
+
+</form>

@@ -1,7 +1,11 @@
-﻿@{
+﻿@using GestaoDeEquipamentosWeb.ConsoleApp.Models;
+@model EditarFabricanteViewModel;
+
+@{
     Layout = "_Layout";
     ViewBag.title = "Edição de Fabricantes";
 }
+
 
 <form class="formulario" action="/Fabricante/Editar/@Model.Id" method="post">
     <div class="formulario-campo">
