@@ -48,9 +48,14 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Cadastrar(string nome, string email, string telefone)
+        public ActionResult Cadastrar(CadastrarFabricanteViewModel cadastroVm)
         {
-            Fabricante novoFabricante = new Fabricante(nome, email, telefone);
+            Fabricante novoFabricante = new Fabricante(
+                cadastroVm.Nome,
+                cadastroVm.Email,
+                cadastroVm.Telefone
+            );
+
             repositorioFabricante.Cadastrar(novoFabricante);
 
             return RedirectToAction(nameof(Listar));
