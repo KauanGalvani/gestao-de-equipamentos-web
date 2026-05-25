@@ -1,0 +1,38 @@
+@{
+    Layout = "_Layout";
+    ViewBag.title = "Listagem de Chamados";
+}
+
+@model List<ListarChamadoVireModel>;
+
+<a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar</a>
+
+<table class="registros">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Equipamento</th>
+            <th>Data de Abertura</th>
+            <th>Tempo Decorrido</th>
+            <th>Status</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ListarChamadoVireModel c in Model)
+        {
+            <tr>
+                <td>@c.Id</td>
+                <td>@c.Titulo</td>
+                <td>@c.Equipamento</td>
+                <td>@c.DataAbertura.ToString(format: "dd/MM/yyyy")</td>
+                <td>@c.TempoDecorrido dia(s)</td>
+                <td>@(c.EstaConcluido ? "Concluido" : "Aberto")</td>
+                <td><a asp-action="Editar" asp-route-id="@c.Id">Editar</a></td>
+                <td><a asp-action="Excluir" asp-route-id="@c.Id">Excluir</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
