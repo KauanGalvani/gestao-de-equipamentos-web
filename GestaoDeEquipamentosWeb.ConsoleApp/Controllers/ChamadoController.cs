@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class ChamadoController : Controller
 {
-    private readonly IRepositorio<Chamado> repositorioChamado;
+    private readonly IRepositorioChamado repositorioChamado;
     private readonly IRepositorio<Equipamento> repositorioEquipamento;
 
     public ChamadoController()
@@ -24,9 +24,17 @@ public class ChamadoController : Controller
     [HttpGet]
     public ActionResult Listar(string? status)
     {
-        string? statusSekecionado = status?.ToLower();
+        string? statusSelecionado = status?.ToLower();
 
-        List<Chamado> chamados = repositorioChamado.SelecionarTodos();
+        List<Chamado> chamados;
+
+        if (statusSelecionado == "em-aberto") // metodo anonimo
+            chamados = repositorioChamado.Filtrar(chamado => !chamado.EstaConcluido);
+
+        else if (statusSelecionado == "concluidos")
+            chamados = repositorioChamado.Filtrar(chamado => chamado.EstaConcluido);
+        else
+            chamados = repositorioChamado.SelecionarTodos();
 
         List<ListarChamadoViewModel> visualizarChamado = new List<ListarChamadoViewModel>();
 
@@ -44,7 +52,7 @@ public class ChamadoController : Controller
             visualizarChamado.Add(listarChamadoVm);
         }
 
-        ViewBag.statusSekecionado = statusSekecionado;
+        ViewBag.statusSekecionado = statusSelecionado;
 
         return View(visualizarChamado);
     }

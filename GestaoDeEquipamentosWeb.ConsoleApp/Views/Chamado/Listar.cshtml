@@ -8,10 +8,10 @@
 <a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar</a>
 
 <div class="filtros-listagem">
-    <a class="@(string.IsNullOrWhiteSpace(ViewBag.StatusSelecionado) ? "ativo" : "")" asp-action="listar">Todos</a>
-    <a class="@(ViewBag.StatusSelecionado == "em-aberto" ? "ativo" : "")" asp-action="listar"
+    <a class="@(string.IsNullOrWhiteSpace(ViewBag.statusSelecionado) ? "" : "ativo")" asp-action="listar">Todos</a>
+    <a class="@(ViewBag.statusSelecionado == "em-aberto" ? "ativo" : "")" asp-action="listar"
        asp-route-status="em-aberto">Em Aberto</a>
-    <a class="@(ViewBag.StatusSelecionado == "concluidos" ? "ativo" : "")" asp-action="listar"
+    <a class="@(ViewBag.statusSelecionado == "concluidos" ? "ativo" : "")" asp-action="listar"
        asp-route-status="concluidos">Concluidos</a>
 </div>
 

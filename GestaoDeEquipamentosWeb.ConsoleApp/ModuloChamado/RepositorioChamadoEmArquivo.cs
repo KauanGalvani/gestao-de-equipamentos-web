@@ -3,7 +3,7 @@ using GestaoDeEquipamentosWeb.ConsoleApp.Compartilhado.Arquivos;
 
 namespace GestaoDeEquipamentosWeb.ConsoleApp.ModuloChamado;
 
-public class RepositorioChamadoEmArquivo : RepositorioBaseEmArquivo<Chamado>, IRepositorio<Chamado>
+public class RepositorioChamadoEmArquivo : RepositorioBaseEmArquivo<Chamado>, IRepositorioChamado
 {
     public RepositorioChamadoEmArquivo(ContextoJson contexto) : base(contexto) { }
 
