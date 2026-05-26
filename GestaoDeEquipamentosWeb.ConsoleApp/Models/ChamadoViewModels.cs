@@ -34,7 +34,9 @@ public record EditarChamadoViewModel(
     string? Descricao,
 
     [Required(ErrorMessage = "O campo Equipamento deve ser preechido.")]
-    string EquipamentoId
+    string EquipamentoId,
+
+    bool EstaConcluido
 );
 
 public record ExcluirChamadoViewModel(

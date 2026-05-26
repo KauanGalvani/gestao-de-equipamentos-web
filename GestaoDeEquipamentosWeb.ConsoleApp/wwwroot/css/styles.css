@@ -70,6 +70,34 @@ nav a:hover {
     background-color: #15803c81;
 }
 
+.filtros-listagem {
+    display: flex;
+    gap: 10px;
+
+    margin: 18px 8px;
+}
+
+.filtros-listagem a {
+    border: 1px solid #22c55e81;
+    border-radius: 10px;
+    color: #02461a;
+    text-decoration: none;
+    font-weight: 600;
+
+    padding: 10px 15px;
+}
+
+.filtros-listagem a:hover {
+    background-color: #15803c81;
+}
+
+.filtros-listagem a.ativo {
+    background-color: #15803c;
+
+    color: white;
+}
+
+
 .registros {
     width: 100%;
     min-width: 720px;

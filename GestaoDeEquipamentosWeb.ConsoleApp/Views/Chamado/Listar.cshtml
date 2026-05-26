@@ -7,7 +7,15 @@
 
 <a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar</a>
 
-<table class="registros">
+<div class="filtros-listagem">
+    <a class="@(string.IsNullOrWhiteSpace(ViewBag.StatusSelecionado) ? "ativo" : "")" asp-action="listar">Todos</a>
+    <a class="@(ViewBag.StatusSelecionado == "em-aberto" ? "ativo" : "")" asp-action="listar"
+       asp-route-status="em-aberto">Em Aberto</a>
+    <a class="@(ViewBag.StatusSelecionado == "concluidos" ? "ativo" : "")" asp-action="listar"
+       asp-route-status="concluidos">Concluidos</a>
+</div>
+
+<table class=" registros">
     <thead>
         <tr>
             <th>ID</th>

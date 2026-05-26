@@ -7,7 +7,7 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.ModuloChamado;
 public class Chamado : EntidadeBase<Chamado>
 {
     public string Titulo { get; set; } = string.Empty;
-    public string? Descricao { get; set; } = null;
+    public string? Descricao { get; set; } = string.Empty;
     public Equipamento Equipamento { get; set; } = null!;
     public DateTime DataAbertura { get; set; } = DateTime.Now;
     public bool EstaConcluido { get; set; }
@@ -28,6 +28,15 @@ public class Chamado : EntidadeBase<Chamado>
         Titulo = titulo;
         Equipamento = equipamento;
         Descricao = descricao;
+    }
+
+    public Chamado(string titulo, Equipamento equipamento, bool estaConcluido, string? descricao = null) : this()
+    {
+        Titulo = titulo;
+        Equipamento = equipamento;
+        EstaConcluido = estaConcluido;
+        Descricao = descricao;
+
     }
 
     public void Concluir()
@@ -53,5 +62,6 @@ public class Chamado : EntidadeBase<Chamado>
         Titulo = entidadeAtualizada.Titulo;
         Descricao = entidadeAtualizada.Descricao;
         Equipamento = entidadeAtualizada.Equipamento;
+        EstaConcluido = entidadeAtualizada.EstaConcluido;
     }
 }

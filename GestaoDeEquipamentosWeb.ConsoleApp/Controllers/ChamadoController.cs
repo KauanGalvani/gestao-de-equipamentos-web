@@ -22,8 +22,10 @@ public class ChamadoController : Controller
     }
 
     [HttpGet]
-    public ActionResult Listar()
+    public ActionResult Listar(string? status)
     {
+        string? statusSekecionado = status?.ToLower();
+
         List<Chamado> chamados = repositorioChamado.SelecionarTodos();
 
         List<ListarChamadoViewModel> visualizarChamado = new List<ListarChamadoViewModel>();
@@ -41,6 +43,9 @@ public class ChamadoController : Controller
 
             visualizarChamado.Add(listarChamadoVm);
         }
+
+        ViewBag.statusSekecionado = statusSekecionado;
+
         return View(visualizarChamado);
     }
 
@@ -91,7 +96,8 @@ public class ChamadoController : Controller
             chamado.Id,
             chamado.Titulo,
             chamado.Descricao,
-            chamado.Equipamento.Id
+            chamado.Equipamento.Id,
+            chamado.EstaConcluido
         );
 
         ViewBag.Equipamento = CarregarEquipamentos();
@@ -116,7 +122,8 @@ public class ChamadoController : Controller
 
         Chamado novoChamado = new Chamado(
             editarVm.Titulo,
-            equipamento,
+            equipamento!,
+            editarVm.EstaConcluido,
             editarVm.Descricao
         );
 

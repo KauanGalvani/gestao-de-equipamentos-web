@@ -27,8 +27,15 @@
         <span asp-validation-for="EquipamentoId" class="formulario-validacao-campo"></span>
     </div>
 
+    <div class="formulario-campo">
+        <label style="display: flex; align-items: center; gap: 10px;">
+            <input asp-for="EstaConcluido" type="checkbox" style="width: auto;">
+            Concluir Chamado
+        </label>
+    </div>
+
     <div class="formulario-acoes">
-        <a href="/Fabricante/Listar">Voltar</a>
+        <a asp-action="Listar">Voltar</a>
         <button type="submit">Confirmar</button>
     </div>
 </form>
