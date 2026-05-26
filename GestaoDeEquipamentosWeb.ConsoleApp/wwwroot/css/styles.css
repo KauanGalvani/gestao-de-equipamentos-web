@@ -135,7 +135,8 @@ nav a:hover {
 }
 
 .formulario-campo input,
-.formulario-campo select {
+.formulario-campo select,
+.formulario-campo textarea {
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #02461a;
@@ -148,7 +149,8 @@ nav a:hover {
 }
 
 .formulario-campo input:focus,
-.formulario-campo select:focus {
+.formulario-campo select:focus,
+.formulario-campo textarea:focus {
     border-color: #02461a;
     outline: 3px solid #02461a81;
     ;
@@ -190,5 +192,19 @@ nav a:hover {
     padding: 14px 16px;
     background-color: #22c55e93;
     color: #02461a;
+    font-weight: 600;
+}
+
+.formulario-validacao-sumario {
+    margin-bottom: 18px;
+    color: rgb(160, 44, 74);
+    font-weight: 600;
+}
+
+.formulario-validacao-campo {
+    display: block;
+    margin-top: 7px;
+    color: rgb(160, 44, 74);
+    font-size: 0.9rem;
     font-weight: 600;
 }

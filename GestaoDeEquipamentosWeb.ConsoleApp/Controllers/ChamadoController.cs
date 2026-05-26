@@ -4,17 +4,12 @@ using GestaoDeEquipamentosWeb.ConsoleApp.Models;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloChamado;
 using GestaoDeEquipamentosWeb.ConsoleApp.ModuloEquipamento;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class ChamadoController : Controller
 {
     private readonly IRepositorio<Chamado> repositorioChamado;
     private readonly IRepositorio<Equipamento> repositorioEquipamento;
-
-    public ChamadoController(IRepositorio<Chamado> repositorioChamado, IRepositorio<Equipamento> repositorioEquipamento)
-    {
-        this.repositorioChamado = repositorioChamado;
-        this.repositorioEquipamento = repositorioEquipamento;
-    }
 
     public ChamadoController()
     {
@@ -27,16 +22,15 @@ public class ChamadoController : Controller
     }
 
     [HttpGet]
-
     public ActionResult Listar()
     {
         List<Chamado> chamados = repositorioChamado.SelecionarTodos();
 
-        List<ListarChamadoVireModel> visualizarChamado = new List<ListarChamadoVireModel>();
+        List<ListarChamadoViewModel> visualizarChamado = new List<ListarChamadoViewModel>();
 
         foreach (Chamado c in chamados)
         {
-            ListarChamadoVireModel listarChamado = new ListarChamadoVireModel(
+            ListarChamadoViewModel listarChamadoVm = new ListarChamadoViewModel(
                 c.Id,
                 c.Titulo,
                 c.Equipamento.Nome,
@@ -45,8 +39,143 @@ public class ChamadoController : Controller
                 c.EstaConcluido
             );
 
-            visualizarChamado.Add(listarChamado);
+            visualizarChamado.Add(listarChamadoVm);
         }
         return View(visualizarChamado);
+    }
+
+    [HttpGet]
+    public ActionResult Cadastrar()
+    {
+        ViewBag.Equipamento = CarregarEquipamentos();
+
+        new CadastrarChamadoViewModel(string.Empty, null, string.Empty);
+
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult Cadastrar(CadastrarChamadoViewModel cadastrarVm)
+    {
+        Equipamento? equipamento = repositorioEquipamento.SelecionarPorId(cadastrarVm.EquipamentoId);
+
+        if (equipamento == null)
+        {
+            ModelState.AddModelError(nameof(cadastrarVm.EquipamentoId), "Selecione um equipamento valido.");
+        }
+        if (!ModelState.IsValid)
+        {
+            return View(cadastrarVm);
+        }
+
+        Chamado novoChamado = new Chamado(
+            cadastrarVm.Titulo,
+            equipamento,
+            cadastrarVm.Descricao
+        );
+        repositorioChamado.Cadastrar(novoChamado);
+
+        return RedirectToAction(nameof(Listar));
+    }
+
+    [HttpGet]
+
+    public ActionResult Editar(string id)
+    {
+        Chamado? chamado = repositorioChamado.SelecionarPorId(id);
+
+        if (chamado == null)
+            return RedirectToAction(nameof(Listar));
+
+        EditarChamadoViewModel editarChamadoVm = new EditarChamadoViewModel(
+            chamado.Id,
+            chamado.Titulo,
+            chamado.Descricao,
+            chamado.Equipamento.Id
+        );
+
+        ViewBag.Equipamento = CarregarEquipamentos();
+
+        return View(editarChamadoVm);
+    }
+
+    [HttpPost]
+
+    public ActionResult Editar(EditarChamadoViewModel editarVm)
+    {
+        Equipamento? equipamento = repositorioEquipamento.SelecionarPorId(editarVm.EquipamentoId);
+
+        if (equipamento == null)
+        {
+            ModelState.AddModelError(nameof(editarVm.EquipamentoId), "Selecione um equipamento valido.");
+        }
+        if (!ModelState.IsValid)
+        {
+            return View(editarVm);
+        }
+
+        Chamado novoChamado = new Chamado(
+            editarVm.Titulo,
+            equipamento,
+            editarVm.Descricao
+        );
+
+        repositorioChamado.Editar(editarVm.Id, novoChamado);
+
+        return RedirectToAction(nameof(Listar));
+    }
+
+    [HttpGet]
+    public ActionResult Excluir(string id)
+    {
+        Chamado? chamado = repositorioChamado.SelecionarPorId(id);
+
+        if (chamado == null)
+            return RedirectToAction(nameof(Listar));
+
+        ExcluirChamadoViewModel excluirVm = new ExcluirChamadoViewModel(
+            chamado.Id,
+            chamado.Titulo,
+            chamado.Descricao,
+            chamado.Equipamento.Nome,
+            chamado.DataAbertura,
+            chamado.TempoDecorrido,
+            chamado.EstaConcluido
+        );
+
+
+        return View(excluirVm);
+    }
+
+    [HttpPost]
+    [ActionName("Excluir")]
+
+    public ActionResult ExcluirConfirmado(ExcluirChamadoViewModel excluirVm)
+    {
+        Chamado? chamado = repositorioChamado.SelecionarPorId(excluirVm.Id);
+
+        if (chamado != null)
+            repositorioChamado.Excluir(chamado);
+
+        return RedirectToAction(nameof(Listar));
+    }
+
+    private List<SelectListItem> CarregarEquipamentos()
+    {
+        List<Equipamento> equipamentos = repositorioEquipamento.SelecionarTodos();
+
+        List<SelectListItem> selecionarEquipamento = new List<SelectListItem>();
+
+        foreach (Equipamento e in equipamentos)
+        {
+            SelectListItem selecionarEquipamentosVm = new SelectListItem(
+                e.Nome,
+                e.Id
+            );
+
+            selecionarEquipamento.Add(selecionarEquipamentosVm);
+        }
+
+        return selecionarEquipamento;
     }
 }

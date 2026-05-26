@@ -3,7 +3,7 @@
     ViewBag.title = "Listagem de Chamados";
 }
 
-@model List<ListarChamadoVireModel>;
+@model List<ListarChamadoViewModel>;
 
 <a class="btn-cadastrar" asp-action="Cadastrar">Cadastrar</a>
 
@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (ListarChamadoVireModel c in Model)
+        @foreach (ListarChamadoViewModel c in Model)
         {
             <tr>
                 <td>@c.Id</td>

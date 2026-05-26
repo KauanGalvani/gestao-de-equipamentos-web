@@ -1,0 +1,47 @@
+@{
+    Layout = "_Layout";
+    ViewBag.title = "Cadastro de Chamados";
+    List<SelectListItem> selecionarEquipamentos = ViewBag.Equipamento;
+}
+
+@model ExcluirChamadoViewModel;
+
+<form class="formulario" asp-action="Excluir" asp-route-id="@Model.Id" method="post">
+
+    <p class="formulario-alerta">Deseja realmente excluir este chamado?</p>
+
+    <div class="formulario-campo">
+        <label asp-for="Titulo">Titulo</label>
+        <input asp-for="Titulo" type="text" disabled>
+    </div>
+
+    <div class="formulario-campo">
+        <label asp-for="Descricao">Descricao</label>
+        <textarea asp-for="Descricao" disabled></textarea>
+    </div>
+
+    <div class="formulario-campo">
+        <label asp-for="Equipamento">Equipamento</label>
+        <input asp-for="Equipamento" type="text" disabled>
+    </div>
+
+    <div class="formulario-campo">
+        <label asp-for="DataAbertura">Data de Abertura</label>
+        <input asp-for="DataAbertura" type="text" asp-format="{0:dd/MM/yyyy}" disabled>
+    </div>
+
+    <div class="formulario-campo">
+        <label asp-for="TempoDecorrido">Tempo Decorrido</label>
+        <input asp-for="TempoDecorrido" type="text" disabled>
+    </div>
+
+    <div class="formulario-campo">
+        <label>Status</label>
+        <input type="text" value="@(Model.EstaConcluido ? "Concluido" : "Aberto")" disabled>
+    </div>
+
+    <div class="formulario-acoes">
+        <a asp-action="Listar">Voltar</a>
+        <button type="submit">Confirmar</button>
+    </div>
+</form>
